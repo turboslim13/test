@@ -56,20 +56,29 @@ window_size = width, height = 600, 600
 screen = pygame.display.set_mode(window_size)
 clock = pygame.time.Clock()
 
-unit = 50
+default_unit = 50
+unit = default_unit
 line_color = (100, 100, 100)
 point_colors = ((255, 99, 71), (0, 179, 0)) 
 bg_color = (40, 40, 40)
 origin = width / 2, height / 2
 
 display()
+calculate()
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
-    calculate()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_n:
+                calculate()
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 4:
+                unit += 5
+            elif event.button == 5:
+                unit -= 5
 
     screen.fill(bg_color)
 
